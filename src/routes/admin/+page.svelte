@@ -4,8 +4,7 @@
 	import AirDatepicker from 'air-datepicker';
 	import { onMount } from 'svelte';
 	import { Trash, Clipboard } from 'svelte-heros-v2';
-	import { copy } from 'svelte-copy';
-
+	
 	interface Data {
 		config?: ConfigSchema;
 		users?: UserSchema[];

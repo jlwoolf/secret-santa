@@ -1,0 +1,33 @@
+name: secret-santa
+
+networks:
+  secret-santa:
+    name: secret-santa
+
+services:
+  app:
+    container_name: secret-santa
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: run
+    restart: always
+    ports:
+      - ':3000'
+    env_file:
+      - .env
+    volumes:
+      - ./sqlite/:/usr/app/sqlite/
+    networks:
+      - secret-santa
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.services.secret-santa.loadbalancer.server.port=3000'
+      # https/websecure
+      - 'traefik.http.routers.secret-santa.entrypoints=web,websecure'
+      - 'traefik.http.routers.secret-santa.rule=Host(`jlwoolf.com`) && PathPrefix(`/movies`)'
+      - 'traefik.http.routers.secret-santa.tls=true'
+      - 'traefik.http.routers.secret-santa.tls.certresolver=production'
+      - 'traefik.http.routers.secret-santa.tls.domains[0].main=jlwoolf.com'
+      - 'traefik.http.routers.secret-santa.tls.domains[0].sans=*.jlwoolf.com'
+      - "com.centurylinklabs.watchtower.enable='false'"
