@@ -2,7 +2,6 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import UnknownError from '$lib/components/UnknownError.svelte';
-	import { date } from 'drizzle-orm/mysql-core';
 	import { CheckCircle, User } from 'svelte-heros-v2';
 
 	let { data }: { data: { count: number } } = $props();
