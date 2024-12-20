@@ -6,6 +6,7 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+RUN npm run db:push
 
 FROM node:20 AS run
 
@@ -13,5 +14,4 @@ WORKDIR /usr/app
 COPY --from=build /usr/app/package.json ./package.json
 COPY --from=build /usr/app/build ./build
 RUN npm install --omit=dev
-RUN npm run db:push
 ENTRYPOINT [ "node", "build" ]

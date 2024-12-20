@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import UnknownError from '$lib/components/UnknownError.svelte';
 	import { LockClosed, LockOpen, Key } from 'svelte-heros-v2';
-	let year = new Date().getFullYear();
+	let year = new Date('2024-12-25').getFullYear();
 
 	let status = $state<'locked' | 'loading' | 'unlocked'>('locked');
 

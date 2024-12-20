@@ -20,13 +20,13 @@ const insertPairings = async (year: number, pairings: Record<number, number>) =>
 };
 
 export const createPairings = async (year?: number) => {
-	year ??= new Date().getFullYear();
+	year ??= new Date('2024-12-25').getFullYear();
 	const users = await getAllUsers(year);
 	const pairings = pairUsers(users);
 	return await insertPairings(year, pairings);
 };
 
 export const deletePairings = async (year?: number) => {
-	year ??= new Date().getFullYear();
+	year ??= new Date('2024-12-25').getFullYear();
 	return await db.delete(schema.pairings).where(eq(schema.pairings.year, year)).returning();
 };

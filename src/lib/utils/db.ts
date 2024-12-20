@@ -2,7 +2,7 @@ import { db, schema } from '$lib/server/db';
 import { eq } from 'drizzle-orm';
 
 export const getConfig = async (year?: number) => {
-	year ??= new Date().getFullYear();
+	year ??= new Date('2024-12-25').getFullYear();
 	const configs = await db.select().from(schema.config).where(eq(schema.config.year, year));
 
 	if (configs.length !== 1) return undefined;
@@ -11,11 +11,11 @@ export const getConfig = async (year?: number) => {
 };
 
 export const getAllUsers = async (year?: number) => {
-	year ??= new Date().getFullYear();
+	year ??= new Date('2024-12-25').getFullYear();
 	return await db.select().from(schema.user).where(eq(schema.user.year, year));
 };
 
 export const getAllPairings = async (year?: number) => {
-	year ??= new Date().getFullYear();
+	year ??= new Date('2024-12-25').getFullYear();
 	return await db.select().from(schema.pairings).where(eq(schema.pairings.year, year));
 };

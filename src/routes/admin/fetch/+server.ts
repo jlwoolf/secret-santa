@@ -1,12 +1,12 @@
 import type { RequestHandler, RequestEvent } from './$types';
 import { error, json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
-import argon2 from 'argon2';
 import { getAllUsers, getConfig } from '$lib/utils';
+import crypto from 'node:crypto';
 
-const createHash = async (password: string) => {
+const createHash = (password: string) => {
 	try {
-		return await argon2.hash(password);
+		return crypto.createHash('md5').update(password).digest('base64url');
 	} catch (error) {
 		console.log(error);
 		return false;
@@ -15,7 +15,7 @@ const createHash = async (password: string) => {
 
 const verifyHash = async (digest: string, password: string) => {
 	try {
-		return await argon2.verify(digest, password);
+		return digest === crypto.createHash('md5').update(password).digest('base64url');
 	} catch (error) {
 		console.log(error);
 		return false;

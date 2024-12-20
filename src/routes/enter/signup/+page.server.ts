@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types';
 import { count, eq } from 'drizzle-orm';
 
 export const load: PageServerLoad = async (event) => {
-	const year = new Date().getFullYear();
+	const year = new Date('2024-12-25').getFullYear();
 	const userCount = await db
 		.select({ count: count() })
 		.from(schema.user)
@@ -41,7 +41,7 @@ export const actions: Actions = {
 			return fail(400, error);
 		}
 
-		const year = new Date().getFullYear();
+		const year = new Date('2024-12-25').getFullYear();
 
 		const users = await db
 			.insert(schema.user)

@@ -6,7 +6,7 @@ import { getConfig } from '$lib/utils';
 
 export const POST = (async ({ request }: RequestEvent) => {
 	const { signup, event } = await request.json();
-	const year = new Date().getFullYear();
+	const year = new Date('2024-12-25').getFullYear();
 	const config = await getConfig();
 
 	const update: { signupDeadline?: Date; eventDate?: Date } = {};

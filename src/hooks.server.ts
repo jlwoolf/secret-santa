@@ -4,7 +4,7 @@ import { redirect, type Handle, type ServerInit } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 
 const getConfig = async () => {
-	const year = new Date().getFullYear();
+	const year = new Date('2024-12-25').getFullYear();
 	let configs = await db.select().from(schema.config).where(eq(schema.config.year, year)).limit(1);
 
 	if (configs.length === 0)
@@ -26,7 +26,7 @@ export const init: ServerInit = async () => {
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const config = await getConfig();
-	const year = new Date().getFullYear();
+	const year = new Date('2024-12-25').getFullYear();
 	event.locals.year = year;
 
 	event.locals.config = config;
