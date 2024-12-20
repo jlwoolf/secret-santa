@@ -25,7 +25,7 @@ services:
       - 'traefik.http.services.secret-santa.loadbalancer.server.port=3000'
       # https/websecure
       - 'traefik.http.routers.secret-santa.entrypoints=web,websecure'
-      - 'traefik.http.routers.secret-santa.rule=Host(`jlwoolf.com`) && PathPrefix(`/movies`)'
+      - 'traefik.http.routers.secret-santa.rule=Host(`jlwoolf.com`) && PathPrefix(`/secret-santa`)'
       - 'traefik.http.routers.secret-santa.tls=true'
       - 'traefik.http.routers.secret-santa.tls.certresolver=production'
       - 'traefik.http.routers.secret-santa.tls.domains[0].main=jlwoolf.com'
